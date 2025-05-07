@@ -24,7 +24,7 @@ app = FastAPI(title="Insightface API")
 log.debug("Constructing FaceAnalysis model.")
 fa = insightface.app.FaceAnalysis()
 log.debug("Preparing FaceAnalysis model.")
-fa.prepare(ctx_id=-1, nms=0.4)
+fa.prepare(ctx_id=-1)
 
 
 engine = create_engine(settings.DATABASE_URL)
@@ -170,11 +170,7 @@ async def face_search(file: bytes = File(...), limit: int = 1):
 
     rows_proxy = query_res.fetchall()
 
-    dict, arr = {}, []
-    for row_proxy in rows_proxy:
-        for column, value in row_proxy.items():
-            dict = {**dict, **{column: value}}
-        arr.append(dict)
+    arr = [dict(row._mapping) for row in rows_proxy]
 
     result = jsonable_encoder({"similar_faces": arr})
 
