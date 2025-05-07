@@ -15,8 +15,8 @@ psycopg2 = "^2.9.6"
 python-multipart = "^0.0.5"
 python-dotenv = "^0.15.0"
 numpy = "^1.23.1"
-onnxruntime = "^1.17.0"  # Для CPU
-# onnxruntime-gpu = "^1.17.0"  # Для GPU
+# onnxruntime = "^1.17.0"  # Для CPU
+onnxruntime-gpu = "1.12.0"  # Для GPU
 insightface = "^0.7.3"
 opencv-python = "^4.9.0"
 
